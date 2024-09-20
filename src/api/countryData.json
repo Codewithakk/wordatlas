@@ -1,0 +1,72 @@
+ [
+    {
+        "id": 1,
+        "countryName": "Japan",
+        "capital": "Tokyo",
+        "population": 125800000,
+        "interestingFact": "Japan is made up of over 6,800 islands, and it has more vending machines than any other country in the world."
+    },
+    {
+        "id": 2,
+        "countryName": "Canada",
+        "capital": "Ottawa",
+        "population": 38010000,
+        "interestingFact": "Canada has the longest coastline in the world, stretching over 202,080 kilometers."
+    },
+    {
+        "id": 3,
+        "countryName": "Brazil",
+        "capital": "Brasilia",
+        "population": 214300000,
+        "interestingFact": "Brazil is home to the Amazon Rainforest, which produces 20% of the world’s oxygen."
+    },
+    {
+        "id": 4,
+        "countryName": "Australia",
+        "capital": "Canberra",
+        "population": 26000000,
+        "interestingFact": "Australia is the only continent without an active volcano."
+    },
+    {
+        "id": 5,
+        "countryName": "Egypt",
+        "capital": "Cairo",
+        "population": 109300000,
+        "interestingFact": "The Great Pyramid of Giza, located in Egypt, is the last of the Seven Wonders of the Ancient World still standing."
+    },
+    {
+        "id": 6,
+        "countryName": "Iceland",
+        "capital": "Reykjavik",
+        "population": 376000,
+        "interestingFact": "Iceland is one of the most eco-friendly countries in the world and runs almost entirely on renewable energy."
+    },
+    {
+        "id": 7,
+        "countryName": "India",
+        "capital": "New Delhi",
+        "population": 1417000000,
+        "interestingFact": "India is home to the world’s largest democracy and the iconic Taj Mahal, a UNESCO World Heritage site."
+    },
+    {
+        "id": 8,
+        "countryName": "Norway",
+        "capital": "Oslo",
+        "population": 5466000,
+        "interestingFact": "Norway is known for its spectacular fjords and is one of the happiest countries in the world according to the World Happiness Report."
+    },
+    {
+        "id": 9,
+        "countryName": "Italy",
+        "capital": "Rome",
+        "population": 59550000,
+        "interestingFact": "Italy has more UNESCO World Heritage Sites than any other country, with a total of 58 sites."
+    },
+    {
+        "id": 10,
+        "countryName": "South Africa",
+        "capital": "Pretoria (administrative), Cape Town (legislative), Bloemfontein (judicial)",
+        "population": 60560000,
+        "interestingFact": "South Africa is the only country in the world with three capital cities."
+    }
+]
