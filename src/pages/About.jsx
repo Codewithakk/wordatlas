@@ -3,70 +3,103 @@ import country from '../api/countryData.json';
 
 export const About = () => {
     const [hoveredCard, setHoveredCard] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
+
+    // Filter countries based on the search term
+    const filteredCountries = country.filter((data) =>
+        data.countryName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Calculate total pages
+    const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
+
+    // Get current countries for the page
+    const currentCountries = filteredCountries.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
 
     const sectionStyle = {
-        padding: '4rem 0',
+        padding: '2rem',
         textAlign: 'center',
-        backgroundColor: 'black', // Matches the black background theme
+        backgroundColor: '#202020',
+        color: '#ffffff', // Light text for contrast
     };
 
     const titleStyle = {
-        fontSize: '2.5rem',
-        fontWeight: 'bold',
-        marginBottom: '2rem',
-        background: 'linear-gradient(to right, #d3d3d3, #d3d3d3)', // Light grey gradient
-        WebkitBackgroundClip: 'text',
-        color: 'transparent',
-        animation: 'fadeIn 2s ease-in-out', // Adding fade-in effect for the title
+        fontSize: '2rem',
+        marginBottom: '1rem',
+        color: '#d3d3d3',
+    };
+
+    const searchInputStyle = {
+        padding: '0.5rem',
+        marginBottom: '1rem',
+        width: '80%',
+        maxWidth: '400px',
+        border: '1px solid #ccc',
+        borderRadius: '5px',
+        backgroundColor: '#333',
+        color: '#ffffff',
     };
 
     const cardContainerStyle = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '2rem',
-        justifyContent: 'center',
-        alignItems: 'center',
-        animation: 'fadeInUp 1s ease-in-out', // Smooth grid appearance animation
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        gap: '1rem',
+        marginBottom: '1rem',
     };
 
-    const cardStyle = (id) => ({
-        backgroundColor: hoveredCard === id ? '5a5a5a' : '#3a3a3a', // Card color changes on hover to light grey
-        borderRadius: '15px',
-        boxShadow: hoveredCard === id
-            ? '0 20px 30px rgba(211, 211, 211, 0.3)' // Light grey shadow
-            : '0 10px 20px rgba(0, 0, 0, 0.3)', // Dynamic shadow
-        transition: 'transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out',
-        padding: '2rem',
-        color: 'white',
-        textAlign: 'left',
-        transform: hoveredCard === id ? 'scale(1.05)' : 'scale(1)', // Slight zoom effect on hover
-        position: 'relative',
+    const cardStyle = (isHovered) => ({
+        backgroundColor: isHovered ? '#444' : '#333', // Darker background for cards
+        borderRadius: '10px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        padding: '1rem',
+        transition: 'transform 0.3s, background-color 0.3s',
+        transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+        cursor: 'pointer',
         overflow: 'hidden',
-        cursor: 'pointer', // Indicate card is interactive
     });
 
     const cardTitleStyle = {
-        fontSize: '2rem',
+        fontSize: '1.5rem',
         fontWeight: 'bold',
-        marginBottom: '1rem',
-        color: hoveredCard ? '#000' : '#d3d3d3', // Light grey title color
+        color: '#ffffff',
     };
 
     const cardDescriptionStyle = {
-        color: '#d3d3d3', // Light grey text for description
+        color: '#d3d3d3',
+    };
+
+    const paginationStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '1rem',
+    };
+
+    const buttonStyle = {
+        backgroundColor: '#ff7e5f',
+        color: '#282c34',
+        border: 'none',
+        padding: '0.5rem 1rem',
+        margin: '0 0.5rem',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s',
+    };
+
+    const disabledButtonStyle = {
+        ...buttonStyle,
+        backgroundColor: '#ccc',
+        cursor: 'not-allowed',
+    };
+
+    const pageInfoStyle = {
+        margin: '0 1rem',
         fontWeight: 'bold',
-    };
-
-    const gradientStyle = {
-        background: '#3a3a3a',
-        padding: '1.5rem',
-        borderRadius: '10px',
-        zIndex: 2, // Ensures content remains above the overlay
-        position: 'relative',
-    };
-
-    const cardAnimate = {
-        animation: 'slideInUp 0.8s ease-in-out',
     };
 
     return (
@@ -75,28 +108,50 @@ export const About = () => {
                 Here are the Interesting Facts <br />
                 we are proud of
             </h2>
+            <input
+                type="text"
+                placeholder="Search for a country..."
+                style={searchInputStyle}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <div style={cardContainerStyle}>
-                {country.map((data) => (
+                {currentCountries.map((data) => (
                     <div
                         key={data.id}
-                        style={{ ...cardStyle(data.id), ...cardAnimate }}
+                        style={cardStyle(hoveredCard === data.id)}
                         onMouseEnter={() => setHoveredCard(data.id)}
                         onMouseLeave={() => setHoveredCard(null)}
                     >
-                        <div style={gradientStyle}>
-                            <p style={cardTitleStyle}>{data.countryName}</p>
-                            <p>
-                                <span style={cardDescriptionStyle}>Capital:</span> {data.capital}
-                            </p>
-                            <p>
-                                <span style={cardDescriptionStyle}>Population:</span> {data.population}
-                            </p>
-                            <p>
-                                <span style={cardDescriptionStyle}>Interesting Fact:</span> {data.interestingFact}
-                            </p>
-                        </div>
+                        <p style={cardTitleStyle}>{data.countryName}</p>
+                        <p style={cardDescriptionStyle}>
+                            <strong>Capital:</strong> {data.capital}
+                        </p>
+                        <p style={cardDescriptionStyle}>
+                            <strong>Population:</strong> {data.population}
+                        </p>
+                        <p style={cardDescriptionStyle}>
+                            <strong>Interesting Fact:</strong> {data.interestingFact}
+                        </p>
                     </div>
                 ))}
+            </div>
+            <div style={paginationStyle}>
+                <button 
+                    style={currentPage === 1 ? disabledButtonStyle : buttonStyle}
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+                <span style={pageInfoStyle}>Page {currentPage} of {totalPages}</span>
+                <button 
+                    style={currentPage === totalPages ? disabledButtonStyle : buttonStyle}
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
             </div>
         </section>
     );

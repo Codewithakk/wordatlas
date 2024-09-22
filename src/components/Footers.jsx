@@ -1,24 +1,21 @@
+import React from 'react';
+
 export const Footer = () => {
     return (
-        <footer style={darkFooterStyles.footerContainer}>
-            <p style={darkFooterStyles.footerText}>© 2024 Your Company. All Rights Reserved.</p>
-            <img src="./public/images/logo.png" height='20px' width='50px' alt="logo" />
+        <footer className="footer-container">
+            <p className="footer-text">© 2024 WordAtlas. All Rights Reserved.</p>
+            <img src="/images/logo.png" height='20px' width='50px' alt="logo" />
+            <div className="icon-container">
+                <a href="https://github.com/Codewithakk" target="_blank" rel="noopener noreferrer" className="icon-link">
+                    <i className="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/akshay-kumar-singh-bba370247/" target="_blank" rel="noopener noreferrer" className="icon-link">
+                    <i className="fab fa-linkedin"></i>
+                </a>
+                <a href="https://leetcode.com/u/Akshay_2002/" target="_blank" rel="noopener noreferrer" className="icon-link">
+                    <img src="/src/assets/leetcode.svg" alt="" height='25px' width='25px' />
+                </a>
+            </div>
         </footer>
     );
-};
-
-const darkFooterStyles = {
-    footerContainer: {
-        background: '#333333',  // Dark grey background for footer
-        padding: '0.5rem',
-        textAlign: 'center',
-        color: '#ffffff',  // White text for footer
-        animation: 'fadeInUp 1.5s ease-in-out',
-    },
-    footerText: {
-        fontSize: '1rem',
-        margin: 0,
-        padding:'0 0 0.5rem 0'
-        
-    },
 };
