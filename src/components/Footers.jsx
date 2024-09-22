@@ -13,7 +13,7 @@ export const Footer = () => {
                     <i className="fab fa-linkedin"></i>
                 </a>
                 <a href="https://leetcode.com/u/Akshay_2002/" target="_blank" rel="noopener noreferrer" className="icon-link">
-                    <img src="/src/assets/leetcode.svg" alt="" height='25px' width='25px' />
+                    <img src="https://img.icons8.com/?size=100&id=9L16NypUzu38&format=png&color=000000" alt="" height='25px' width='25px' />
                 </a>
             </div>
         </footer>
