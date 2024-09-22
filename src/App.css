@@ -197,6 +197,7 @@ body, html {
   height: auto;
 }
 
+/* Menu Toggle (Hamburger Icon) */
 .menu-toggle {
   display: none;
   font-size: 30px;
@@ -210,7 +211,7 @@ body, html {
   outline: none;
 }
 
-/* Nav Links */
+/* Navigation Links (Desktop View) */
 .nav {
   display: flex;
   align-items: center;
@@ -237,26 +238,32 @@ body, html {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+  /* Display the hamburger icon on mobile */
   .menu-toggle {
       display: block;
   }
 
+  /* Initially hide the navigation for mobile */
   .nav {
       display: none;
       position: absolute;
-      top: 60px;
-      right: 20px;
+      top: 50px;
+      right: 75px;
       background-color: #333;
       flex-direction: column;
-      width: 200px;
+      width: 100%;
+      max-width: 150px;
       border-radius: 5px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 999;
   }
 
+  /* Show the nav when open */
   .nav.open {
       display: flex;
   }
 
+  /* Mobile view: stack links vertically */
   .nav-links {
       flex-direction: column;
   }
@@ -266,11 +273,15 @@ body, html {
       text-align: center;
       width: 100%;
       margin: 0;
+      font-size: 1.2rem;
+      color: #ffffff;
+      border-bottom: 1px solid #444;
   }
 
   .nav-item:hover {
       background-color: #444;
-      border-radius: 5px;
+      color: #ff7e5f;
+      border-radius: 0;
   }
 }
 
@@ -278,7 +289,7 @@ body, html {
 @media (max-width: 1024px) {
   .nav-item {
       margin: 0 10px;
-      font-size: 0.9rem;
+      font-size: 1.7rem;
   }
 }
 
