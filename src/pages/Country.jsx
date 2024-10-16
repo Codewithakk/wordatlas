@@ -83,16 +83,17 @@ export const Country = () => {
   if (isPending) return <Loader />;
 
   return (
-    <section className="country-section">
-      <div className="search-sort-controls">
+    <section className="country-section" style={styles.section}>
+      <div className="search-sort-controls" style={styles.controls}>
         <input
           type="text"
           placeholder="Search by country name..."
           value={searchTerm}
           onChange={handleSearch}
           className="search-input"
+          style={styles.input}
         />
-        <select value={sortOrder} onChange={handleSortChange} className="sort-dropdown">
+        <select value={sortOrder} onChange={handleSortChange} className="sort-dropdown" style={styles.select}>
           <option value="name">Sort by Name</option>
           <option value="population">Sort by Population</option>
         </select>
@@ -100,24 +101,26 @@ export const Country = () => {
           value={countriesPerPage}
           onChange={(e) => setCountriesPerPage(Number(e.target.value))}
           className="page-size-dropdown"
+          style={styles.select}
         >
           <option value={12}>12 countries per page</option>
           <option value={24}>24 countries per page</option>
-          <option value={36}>36countries per page</option>
+          <option value={36}>36 countries per page</option>
         </select>
       </div>
 
-      <ul className="grid grid-four-cols">
+      <ul className="grid grid-four-cols" style={styles.grid}>
         {currentCountries.map((curcountry, index) => (
           <CountryCard country={curcountry} key={index} />
         ))}
       </ul>
 
-      <div className="pagination-controls">
+      <div className="pagination-controls" style={styles.pagination}>
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
           className="pagination-btn"
+          style={styles.button}
         >
           Previous
         </button>
@@ -126,6 +129,7 @@ export const Country = () => {
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
           className="pagination-btn"
+          style={styles.button}
         >
           Next
         </button>
@@ -133,3 +137,55 @@ export const Country = () => {
     </section>
   );
 };
+
+// Internal styles for responsiveness
+const styles = {
+  section: {
+    padding: "20px",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    fontFamily: "Arial, sans-serif",
+  },
+  controls: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "10px",
+    marginBottom: "20px",
+  },
+  input: {
+    padding: "10px",
+    width: "100%",
+    maxWidth: "400px",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+  },
+  select: {
+    padding: "10px",
+    width: "100%",
+    maxWidth: "200px",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+    gap: "15px",
+  },
+  pagination: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "20px",
+  },
+  button: {
+    padding: "10px 15px",
+    border: "none",
+    borderRadius: "4px",
+    backgroundColor: "#007BFF",
+    color: "#fff",
+    cursor: "pointer",
+    margin: "0 5px",
+  },
+};
+
+export default Country;
